@@ -8,6 +8,8 @@
   "dependencies": {
     "express": "3.4.8",
     "jade": "*",
-    "sqlite3": "~3.0.4"
+    "sqlite3": "~3.0.4",
+    "nodejs-gravatar": "~1.0.2",
+    "connect-slashes": "~1.3.0"
   }
 }
