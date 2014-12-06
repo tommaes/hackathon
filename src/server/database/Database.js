@@ -1,16 +1,12 @@
 var fs = require('fs'),
-    sqlite3 = require('sqlite3').verbose();
+    sqlite3 = require('sqlite3').verbose(),
+    user_info = require('./user_info');
 
 var db = new sqlite3.Database('heroesofmightandknowledge.db');
 var check;
 db.serialize(function() {
 
-  db.run("CREATE TABLE if not exists user_info (username TEXT NOT NULL, \
-                                                password TEXT NOT NULL, \
-                                                email TEXT NOT NULL, \
-                                                hero TEXT NOT NULL, \
-                                                typeaccount INTEGER NOT NULL, \
-                                                PRIMARY KEY(username))");
+  db.run(user_info.initializeTable);
   //db.run("CREATE TABLE if not exists ")
   var stmt = db.prepare("INSERT INTO user_info VALUES (?, ?, ?, ?, ?)");
   for (var i = 0; i < 10; i++) {
