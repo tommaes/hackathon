@@ -1,0 +1,30 @@
+nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
+  .container
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      //- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it)
+      a.navbar-brand(href='/') Heroes of Might and Knowledge &nbsp;
+    
+    //- Collect the nav links, forms, and other content for toggling
+    .collapse.navbar-collapse.navbar-ex1-collapse
+      ul.nav.navbar-nav.navbar-left
+        li
+          a(href='/contact') Rules
+          
+      ul.nav.navbar-nav.navbar-right
+        - if (user)
+            li
+              a(href='/user/account', style="padding:10px"): img.img-rounded.avatar(src='#{user.avatarUrl}')
+            li
+              a(href='/user/account') #{user.firstName} #{user.lastName}
+            li
+              a(href='/user/logout/') Logout
+        - else
+            li
+              a(href='/user/login') Login    
+            li
+              a(href='/user/register') Register
