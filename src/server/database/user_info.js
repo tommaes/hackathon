@@ -1,9 +1,7 @@
 var answer = require('../../general/loginAnswer'),
     account = require('../../general/userInfo');
 
-module.exports = {
-
-    User_Info_DB : function () {
+    function User_Info_DB() {
         
         this.login = function (username, password, db, f) {
             db.get("select * from user_info WHERE username='" + username + "' AND password='" + password + "'", function(err, row){
@@ -38,13 +36,15 @@ module.exports = {
         }
 
     
-    },
+    }
 
-    initializeTable : "CREATE TABLE if not exists user_info (username TEXT NOT NULL, \
+    User_Info_DB.prototype.initializeTable = "CREATE TABLE if not exists user_info (username TEXT NOT NULL, \
                                                             password TEXT NOT NULL, \
                                                             email TEXT NOT NULL, \
                                                             hero TEXT NOT NULL, \
                                                             typeaccount INTEGER NOT NULL, \
-                                                            PRIMARY KEY(username))"
+                                                            PRIMARY KEY(username))" ;
                                                                 
-};
+
+
+module.exports = User_Info_DB;
