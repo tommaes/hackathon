@@ -1,11 +1,38 @@
-var http = require('http'),
-    fs = require('fs'),
-    db = require('./database/Database');
 
-var server = http.createServer(function(req, res) {
-  res.end('Hello from NodeJS!\n');
-  console.log('Someone visited our web server!');
-})
+/**
+ * Module dependencies.
+ */
 
-server.listen(3000, '0.0.0.0');
-console.log("NodeJS web server running on 0.0.0.0:3000");
+var express = require('express');
+var http = require('http');
+var path = require('path');
+
+var routes = require('./routes');
+var user = require('./routes/user');
+var db = require('./database/Database')
+
+var app = express();
+
+// all environments
+app.set('port', process.env.PORT || 3000);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+app.use(express.favicon());
+app.use(express.logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
+
+// development only
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
+
+app.get('/', routes.index);
+app.get('/users', user.list);
+
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
