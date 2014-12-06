@@ -8,11 +8,10 @@ db.serialize(function() {
 
   db.run(user_info.initializeTable);
   //db.run("CREATE TABLE if not exists ")
-  var stmt = db.prepare("INSERT INTO user_info VALUES (?, ?, ?, ?, ?)");
+  var userDB = new user_info.User_Info_DB();
   for (var i = 0; i < 10; i++) {
-      stmt.run("test" + i, "Ipsum " + i, "lol", "lal", 1);
+      userDB.createUser("test" + i, "Ipsum " + i, "lol", "lal", 1, db);
   }
-  stmt.finalize();
 
   db.each("SELECT rowid AS id, username FROM user_info", function(err, row) {
       console.log(row.id + ": " + row.username);
