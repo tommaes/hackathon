@@ -11,7 +11,7 @@ module.exports = {
                    f(new answer.LogInAnswer(false, undefined));
                }
                else {
-                   f(new answer.LogInAnswer(true, undefined));
+                   f(new answer.LogInAnswer(true, createAccount(row.username, row.email, row.hero, row.typeaccount)));
                }
             });
         };
@@ -19,18 +19,23 @@ module.exports = {
         this.createUser = function (username, password, email, hero, type, db, f) {
             try {
                 db.run("Insert into user_info VALUES (?, ?, ?, ?, ?)", [username, password, email, hero, type]);
-                if (type == account.GamePlayerID) {
-                    f(new account.GamePlayer(username, email, hero));
-                }
-                else {
-                    f(new account.Teacher(username, email));
-                }
+                f(createAccount(username, email, hero, type))
             }
             catch(error) {
                 
             }
         };
         
+        function createAccount(username, email, hero, type) {
+            
+            if (type == account.GamePlayerID) {
+                return new account.GamePlayer(username, email, hero);
+            }
+            else {
+                return new account.Teacher(username, email);
+            }
+            
+        }
 
     
     },

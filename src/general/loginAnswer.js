@@ -6,5 +6,5 @@ module.exports = {
         this.possibleUser = possibleUser;
         
     }
-                                                                
+
 };
