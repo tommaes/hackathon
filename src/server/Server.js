@@ -32,7 +32,7 @@ app.use(function(req, res, next) {
 	next();
 });
 app.use(app.router);
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../client')));
 
 // development only
 if ('development' == app.get('env')) {
