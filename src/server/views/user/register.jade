@@ -12,15 +12,15 @@ block content
           .modal-body
             .well
               form.form-login(action='/user/register', method='post')
-                    h2.form-login-heading Create new user
-                    .form-group
-                      input.form-control(type='text', name='firstname', placeholder='First Name', autofocus='autofocus')
-                    .form-group
-                      input.form-control(type='text', name='lastname', placeholder='Last Name')
-                    br
-                    .form-group
-                      input.form-control(type='text', name='register_email', placeholder='Email address')
-                    .form-group
-                      input.form-control(type='password', name='register_password', placeholder='Password')
-                    br
-                    button.btn.btn-lg.btn-primary.btn-block(type='submit', name='create', value='create') Create
+                h2.form-login-heading Create new user
+                .form-group
+                  input.form-control(type='text', name='firstname', placeholder='First Name', autofocus='autofocus')
+                .form-group
+                  input.form-control(type='text', name='lastname', placeholder='Last Name')
+                br
+                .form-group
+                  input.form-control(type='text', name='register_email', placeholder='Email address')
+                .form-group
+                  input.form-control(type='password', name='register_password', placeholder='Password')
+                br
+                button.btn.btn-lg.btn-primary.btn-block(type='submit', name='create', value='create') Create
