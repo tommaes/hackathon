@@ -1,0 +1,24 @@
+extends ../layout
+block content
+  script(src='/libs/jquery.validate.min.js')
+
+  //Load the navigation bar
+  include ../navbar
+
+
+  .container
+    .row
+      .span12
+        #loginModal
+          .modal-body
+            .well
+              form.form-login(action='/user/login', method='post')
+                h2.form-login-heading Please sign in
+                .form-group
+                  input.form-control(type='text', name='login_email', placeholder='Email address', autofocus='autofocus')
+                .form-group
+                  input.form-control(type='password', name='login_password', placeholder='Password')
+                label.checkbox
+                  input(type='checkbox', value='remember-me')
+                  | Remember me
+                button.btn.btn-lg.btn-primary.btn-block(type='submit', name='signin', value='signin') Sign in
