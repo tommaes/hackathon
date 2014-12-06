@@ -3,4 +3,4 @@
 *.DS_Store
 *.log
 *.db
-*/node_modules/*
+src/server/node_modules/
