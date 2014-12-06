@@ -1,5 +1,6 @@
 var http = require('http'),
     fs = require('fs'),
+    PubNub = require('http://cdn.pubnub.com/pubnub.min.js'),
     db = require('./database/Database');
 
 var server = http.createServer(function(req, res) {
