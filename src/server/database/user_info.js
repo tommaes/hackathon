@@ -4,8 +4,8 @@ var account = require('../../general/userInfo')
 module.exports = {
 
     User_Info_DB : function () {
-    
-        function login(username, password, db) {
+        
+        this.login = function (username, password, db) {
             db.get("SELECT * from user_info where username=? AND password=?", [username, password] , function(err,row){
                if(row === undefined) {
                    return new answer.LogInAnswer(false, undefined);
@@ -14,9 +14,9 @@ module.exports = {
                    return new answer.LogInAnswer(true, undefined);
                }
             });
-        }
+        };
         
-        function createUser(username, password, email, hero, type, db) {
+        this.createUser = function (username, password, email, hero, type, db) {
             try {
                 db.run("Insert into user_info VALUES (?, ?, ?, ?, ?)", [username, password, email, hero, type]);
                 if (type == account.GamePlayerID) {
@@ -29,7 +29,7 @@ module.exports = {
             catch(error) {
                 
             }
-        }
+        };
         
 
     
