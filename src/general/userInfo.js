@@ -5,6 +5,7 @@ module.exports = {
         this.username = username;
         this.email = email;
         this.hero = hero;
+        this.money = 0;
     },
     
     Teacher : function(username, email) {
