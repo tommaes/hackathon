@@ -1,7 +1,8 @@
 var fs = require('fs'),
     sqlite3 = require('sqlite3').verbose(),
     gameUser = require('./GameUser'),
-    User_Info_DB = require('./user_info');
+    User_Info_DB = require('./user_info'),
+    VisualizationDB = require('./Visualization');
     
   
     
@@ -27,6 +28,8 @@ var fs = require('fs'),
         });
     };
     
+    // ----------------------------------  Create User ------------------------------------------------------
+    
     this.createUser = function(username, password, email, hero, type) {
         var self = this;
          self.db.serialize(function() {
@@ -36,6 +39,8 @@ var fs = require('fs'),
             self.userDB.createUser(username, password, email, hero, type, self.db, f);
         });
     };
+    
+    // ----------------------------------  Log In ------------------------------------------------------
     
     this.login = function(username, password, func) {
         var self = this;
@@ -59,6 +64,19 @@ var fs = require('fs'),
         
     };
     
+    // ----------------------------------  Visualization ------------------------------------------------------
+    
+    this.getHeroes = function() {
+        return this.visualizationDB.heroes;
+    };
+    
+    this.getTroops = function() {
+        return this.visualizationDB.troops;
+    };
+    
+    
+    // ----------------------------------  Initialization ------------------------------------------------------
+    
     this.initializeTables();
     
     
@@ -66,6 +84,7 @@ var fs = require('fs'),
 
 DatabaseLayer.prototype.userDB = new User_Info_DB();
 DatabaseLayer.prototype.gameUser_DB = new gameUser.Game_User_DB();
+DatabaseLayer.prototype.visualizationDB = new VisualizationDB();
 
 module.exports = DatabaseLayer;
 
@@ -76,7 +95,7 @@ module.exports = DatabaseLayer;
 var database = new DatabaseLayer();
 
   for (var i = 0; i < 10; i++) {
-      database.createUser("test" + i, "Ipsum " + i, "lol", "lal", 1);
+      database.createUser("test" + i, "Ipsum " + i, "lol", "DarthVader", 1);
   }
   
   
