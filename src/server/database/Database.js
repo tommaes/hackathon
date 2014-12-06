@@ -1,18 +1,18 @@
 var fs = require('fs'),
     sqlite3 = require('sqlite3').verbose(),
     gameUser = require('./GameUser'),
-    user_info = require('./user_info');
+    User_Info_DB = require('./user_info');
     
-module.exports = {    
+  
     
-DatabaseLayer : function() {
+ function DatabaseLayer() {
     
     this.db = new sqlite3.Database('heroesofmightandknowledge.db');
     
     this.initializeTables = function() {
         var self = this;
         this.db.serialize(function() {
-            self.db.run(user_info.initializeTable);
+            self.db.run(self.userDB.initializeTable);
             self.db.run(gameUser.initializeGoldTable);
         });
         
@@ -59,20 +59,17 @@ DatabaseLayer : function() {
         
     };
     
-    this.userDB = new user_info.User_Info_DB();
-    this.gameUser_DB = new gameUser.Game_User_DB();
-    
     this.initializeTables();
     
     
 }
 
-//    DatabaseLayer.prototype.userDB = new user_info.User_Info_DB();
-//    DatabaseLayer.prototype.gameUser_DB = new gameUser.Game_User_DB();
+DatabaseLayer.prototype.userDB = new User_Info_DB();
+DatabaseLayer.prototype.gameUser_DB = new gameUser.Game_User_DB();
 
-};
+module.exports = DatabaseLayer;
 
-/*
+
 // Test code
 // Remove when done
 
@@ -87,4 +84,3 @@ var database = new DatabaseLayer();
   
   
   database.login("test5", "Ipsum 5", function(v) {});
-  */
