@@ -9,7 +9,7 @@ var path = require('path');
 
 var routes = require('./routes');
 var user = require('./routes/user');
-var db = require('./database/Database')
+var db = require('./database/Database');
 
 var app = express();
 
