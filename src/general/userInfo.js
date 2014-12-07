@@ -15,5 +15,5 @@ module.exports = {
     
     GamePlayerID : 1,
     TeacherID : 2
-                                                                
+
 };
