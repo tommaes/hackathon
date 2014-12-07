@@ -68,11 +68,12 @@ var fs = require('fs'),
                 
                 // Test Code
                 
-                console.log(newv);
-                database.closeDBConnection();
-                console.log("Database closed");
-                callback(newv);
+                // console.log(newv);
+                // database.closeDBConnection();
+                // console.log("Database closed");
+                //================================
                 
+                callback(newv);
             };
             self.userDB.login(username, password, self.db, function(value) {
                 //console.log(value);
