@@ -8,21 +8,12 @@ function initializeGame() {
 	mainCanvas.width  = window.innerWidth;
 	mainCanvas.height = window.innerHeight;
 
-	var initialized = loadResources();
+	var initialized = loadAssets();
 
-	initialized.then(function(){startGame(mainCanvas)});
+	$.when.apply($, promises).then(function(){startGame(mainCanvas)});
 }
 
 
-function loadResources() {
-	var loaded = new $.Deferred();
-
-	resources.mapImage 		  = new Image();
-	resources.mapImage.onload = loaded.resolve;
-	resources.mapImage.src 	  = "images/Map/map.png";
-
-	return loaded.promise();
-}
 
 function startGame(canvas) {
 	var game = new gameLogic(canvas);

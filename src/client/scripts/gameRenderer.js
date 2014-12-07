@@ -1,5 +1,9 @@
-function gameRenderer(canvas) {
+function gameRenderer(gameLogic, canvas) {
 	var ctx = canvas.getContext("2d");
+	var tileWidth = canvas.width/60;
+	var tileHeight = canvas.height/40;
+	var playerWidth = canvas.width/60*2;
+	var playerHeight = playerWidth*1.1;
 
 
 	function renderBackground() {
@@ -35,14 +39,25 @@ function gameRenderer(canvas) {
 		}
 	}
 
-	function renderPlayer() {
+	function renderPlayer(gameLogic) {
+		var playerImages = resources.player[gameLogic.playerType];
+		var currentImage;
+		switch (gameLogic.direction) {
+			case 'right' : currentImage=playerImages['right1']; break;
+			case 'left' : currentImage=playerImages['left1']; break;
+			case 'front' : currentImage=playerImages['front1']; break;
+			case 'back' : currentImage=playerImages['back1']; break;
+		}
 
+		ctx.fillStyle = "#FF0000";
+		ctx.fillRect(gameLogic.position.x, gameLogic.position.y, (ctx.canvas.width/60),(ctx.canvas.height/40));
+		ctx.drawImage(currentImage, gameLogic.position.x - (playerWidth/2)+tileWidth/2, gameLogic.position.y - playerHeight + tileHeight, playerWidth, playerHeight);
 	}
 
-	this.render = function() {
+	this.render = function(gameLogic) {
 		renderBackground();
 		renderDebugLines();
-		renderPlayer();
+		renderPlayer(gameLogic);
 	}
 
 }
