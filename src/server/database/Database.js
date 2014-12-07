@@ -3,7 +3,8 @@ var fs = require('fs'),
     gameUser = require('./GameUser'),
     User_Info_DB = require('./user_info'),
     VisualizationDB = require('./Visualization'),
-    WorldDB = require('./WorldDB');
+    WorldDB = require('./WorldDB'),
+    QuestionDB = require('./questions/QuestionDBLayer');
     
   
     
@@ -30,6 +31,13 @@ var fs = require('fs'),
         });
     };
     
+    // ----------------------------------  Create Question ------------------------------------------------------
+    
+    this.getQuestion = function(questionType, callback) {
+        var self = this;
+        callback(self.questionDB.getQuestion(questionType));
+    };
+    
     // ----------------------------------  Create User ------------------------------------------------------
     
     this.createUser = function(username, password, email, hero, type, callback) {
@@ -45,12 +53,12 @@ var fs = require('fs'),
     this.checkEmailExists = function(email, callback) {
         var self = this;
         self.userDB.checkEmailExists(email, self.db, callback);
-    }
+    };
 
     this.checkUserNameExists = function(userName, callback) {
         var self = this;
         self.userDB.checkUserNameExists(userName, self.db, callback);
-    }
+    };
     
     // ----------------------------------  Create World ------------------------------------------------------
     
@@ -104,6 +112,7 @@ DatabaseLayer.prototype.userDB = new User_Info_DB();
 DatabaseLayer.prototype.gameUser_DB = new gameUser.Game_User_DB();
 DatabaseLayer.prototype.visualizationDB = new VisualizationDB();
 DatabaseLayer.prototype.worldDB = new WorldDB();
+DatabaseLayer.prototype.questionDB = new QuestionDB();
 
 module.exports = new DatabaseLayer();
 
@@ -126,5 +135,7 @@ var database = new DatabaseLayer();
   
   database.createWorld(10, function(value) { console.log(value)});
   
+  
+  database.getQuestion(1, function(value) { console.log(value)});
   
   database.login("test5", "Ipsum 5", function(v) {});
