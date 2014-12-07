@@ -7,6 +7,19 @@ var express = require('express');
 var http = require('http');
 var path = require('path');
 var slashes = require('connect-slashes');
+var pubnub = require("pubnub").init({
+    publish_key   : "demo",
+    subscribe_key : "demo"
+});
+var message = { "some" : "data" };
+
+pubnub.publish({ 
+    channel   : 'server_channel',
+    message   : message,
+    callback  : function(e) { console.log( "SUCCESS!", e ); },
+    error     : function(e) { console.log( "FAILED! RETRY PUBLISH!", e ); }
+});
+
 
 var app = express();
 
@@ -57,4 +70,10 @@ require('./routes/user/register')(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+  pubnub.subscribe({
+    channel  : "server_channel",
+    callback : function(message) {
+        console.log( " > ", message );
+    }
+  });
 });

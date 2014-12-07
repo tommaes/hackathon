@@ -123,20 +123,22 @@ module.exports = new DatabaseLayer();
 
 var database = new DatabaseLayer();
 
+var logMessage = function(value) { console.log(value)};
+
   for (var i = 0; i < 10; i++) {
-      database.createUser("test" + i, "Ipsum " + i, "lol@lol.com", "DarthVader", 1, function(value) { console.log(value)});
+      database.createUser("test" + i, "Ipsum " + i, "lol@lol.com", "DarthVader", 1, logMessage);
   }
   
   
   console.log("select * FROM game_user where username='test0'");
   
-  database.getTroops(function(value) { console.log(value)});
+  database.getTroops(logMessage);
   
-  database.getHeroes(function(value) { console.log(value)});
+  database.getHeroes(logMessage);
   
-  database.createWorld(10, function(value) { console.log(value)});
+  database.createWorld(10, logMessage);
   
   
-  database.getQuestion(questionType.questionTypes.TRANSLATE, function(value) { console.log(value)});
+  database.getQuestion(questionType.questionTypes.TRANSLATE, logMessage);
   
-  database.login("test5", "Ipsum 5", function(v) {});
+  database.login("test5", "Ipsum 5", logMessage);
