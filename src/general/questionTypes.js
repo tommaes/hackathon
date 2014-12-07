@@ -1,9 +1,7 @@
-module.exports = questionTypes;
+var Enum = require('../server/node_modules/enum');
 
-var questionTypes = {
-    TRANSLATE : 1
-    
-    
+module.exports = {
+
+    questionTypes : new Enum({'TRANSLATE' : 1})
+
 };
-
-Object.freeze(questionTypes);

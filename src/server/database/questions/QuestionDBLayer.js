@@ -18,7 +18,7 @@ function QuestionDBLayer() {
         
     this.getQuestion = function(type) {
         switch(type) {
-            case 1 : {
+            case questionType.questionTypes.TRANSLATE : {
                 var q = this.translateDB.getValue();
                 
                 // The English word

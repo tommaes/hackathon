@@ -4,7 +4,8 @@ var fs = require('fs'),
     User_Info_DB = require('./user_info'),
     VisualizationDB = require('./Visualization'),
     WorldDB = require('./WorldDB'),
-    QuestionDB = require('./questions/QuestionDBLayer');
+    QuestionDB = require('./questions/QuestionDBLayer'),
+    questionType = require('../../general/questionTypes');
     
   
     
@@ -136,6 +137,6 @@ var database = new DatabaseLayer();
   database.createWorld(10, function(value) { console.log(value)});
   
   
-  database.getQuestion(1, function(value) { console.log(value)});
+  database.getQuestion(questionType.questionTypes.TRANSLATE, function(value) { console.log(value)});
   
   database.login("test5", "Ipsum 5", function(v) {});
