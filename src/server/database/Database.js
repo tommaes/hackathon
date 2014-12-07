@@ -49,7 +49,7 @@ var fs = require('fs'),
 
     this.checkUserNameExists = function(userName, callback) {
         var self = this;
-        self.userDb.checkUserNameExists(userName, callbck);
+        self.userDB.checkUserNameExists(userName, self.db, callback);
     }
     
     // ----------------------------------  Create World ------------------------------------------------------

@@ -58,7 +58,7 @@ module.exports = function(app){
 	 * Check if userName already in use to prevent duplication
 	 */
 	app.post('/user/validate/register_username', function(req, res) {
-		var email = req.body.register_username;
+		var username = req.body.username;
 		var result;
 		// In JavaScript, the following values are falsy
 		// The following values are always FALSE:
@@ -68,7 +68,7 @@ module.exports = function(app){
 		// - null.
 		// - undefined.
 		// - NaN (a special Number value meaning Not-a-Number!)
-		database.checkUserNameExists(email, function(dataEntry) {
+		database.checkUserNameExists(username, function(dataEntry) {
 			if (dataEntry)
 				result = "This UserName is already in use";
 			else
