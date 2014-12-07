@@ -42,6 +42,7 @@ function gameRenderer(gameLogic, canvas) {
 	function renderPlayer(gameLogic) {
 		var playerImages = resources.player[gameLogic.playerType];
 		var currentImage;
+		
 		switch (gameLogic.direction) {
 			case 'right' : currentImage=playerImages['right1']; break;
 			case 'left' : currentImage=playerImages['left1']; break;
@@ -50,8 +51,8 @@ function gameRenderer(gameLogic, canvas) {
 		}
 
 		ctx.fillStyle = "#FF0000";
-		ctx.fillRect(gameLogic.position.x, gameLogic.position.y, (ctx.canvas.width/60),(ctx.canvas.height/40));
-		ctx.drawImage(currentImage, gameLogic.position.x - (playerWidth/2)+tileWidth/2, gameLogic.position.y - playerHeight + tileHeight, playerWidth, playerHeight);
+		ctx.fillRect(gameLogic.absoluteposition.x, gameLogic.absoluteposition.y, (ctx.canvas.width/60),(ctx.canvas.height/40));
+		ctx.drawImage(currentImage, gameLogic.absoluteposition.x - (playerWidth/2)+tileWidth/2, gameLogic.absoluteposition.y - playerHeight + tileHeight, playerWidth, playerHeight);
 	}
 
 	this.render = function(gameLogic) {
