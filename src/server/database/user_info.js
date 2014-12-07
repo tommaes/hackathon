@@ -23,6 +23,22 @@ var answer = require('../../general/loginAnswer'),
                 
             }
         };
+
+        this.checkEmailExists = function (email, db, callback) {
+            var selectUser  = "SELECT * FROM user_info WHERE email = ?";
+
+            db.get(selectUser, [email], function(err, row){
+                callback(Boolean(row));
+            });
+        };
+
+        this.checkUserNameExists = function (userName, db, callback) {
+            var selectUser  = "SELECT * FROM user_info WHERE username = ?";
+
+            db.get(selectUser, [userName], function(err, row){
+                callback(Boolean(row));
+            });
+        };
         
         function createAccount(username, email, hero, type) {
             

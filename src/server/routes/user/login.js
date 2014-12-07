@@ -17,7 +17,7 @@ module.exports = function(app){
 		var email = req.body.login_email;
 		var password = req.body.login_password;
 
-		var defltAvatar = "http://uekk88933beb.evgeni.koding.io/user.png";
+		var defltAvatar = "http://evgeni.koding.io:3000/images/user.png";
 		var grava = gravatar.imageUrl(email, {s: 40, d: defltAvatar});
 
 		// Get the user entity

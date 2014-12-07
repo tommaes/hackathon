@@ -17,6 +17,7 @@ var fs = require('fs'),
             self.db.run(self.userDB.initializeTable);
             self.db.run(gameUser.initializeGoldTable);
         });
+    };
         
     this.closeDBConnection = function() {
         var self = this;
@@ -40,6 +41,16 @@ var fs = require('fs'),
             self.userDB.createUser(username, password, email, hero, type, self.db, f);
         });
     };
+
+    this.checkEmailExists = function(email, callback) {
+        var self = this;
+        self.userDB.checkEmailExists(email, self.db, callback);
+    }
+
+    this.checkUserNameExists = function(userName, callback) {
+        var self = this;
+        self.userDb.checkUserNameExists(userName, callbck);
+    }
     
     // ----------------------------------  Create World ------------------------------------------------------
     
@@ -69,9 +80,7 @@ var fs = require('fs'),
             });
         });
     };
-        
-    };
-    
+
     // ----------------------------------  Visualization ------------------------------------------------------
     
     this.getHeroes = function(callback) {
@@ -95,7 +104,7 @@ DatabaseLayer.prototype.gameUser_DB = new gameUser.Game_User_DB();
 DatabaseLayer.prototype.visualizationDB = new VisualizationDB();
 DatabaseLayer.prototype.worldDB = new WorldDB();
 
-module.exports = DatabaseLayer;
+module.exports = new DatabaseLayer();
 
 
 // Test code
@@ -104,7 +113,7 @@ module.exports = DatabaseLayer;
 var database = new DatabaseLayer();
 
   for (var i = 0; i < 10; i++) {
-      database.createUser("test" + i, "Ipsum " + i, "lol", "DarthVader", 1, function(value) { console.log(value)});
+      database.createUser("test" + i, "Ipsum " + i, "lol@lol.com", "DarthVader", 1, function(value) { console.log(value)});
   }
   
   
